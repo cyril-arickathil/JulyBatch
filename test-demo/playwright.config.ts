@@ -8,7 +8,7 @@ import { defineConfig, devices } from '@playwright/test';
 // import path from 'path';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
 
-const SERVER_PATH = "C:\\Users\\cyril\\Projects\\July-Batch\\pw-practice-app";
+const SERVER_PATH = "C:\\Users\\cyril\\Projects\\JulyBatch\\pw-practice-app";
 
 /**
  * See https://playwright.dev/docs/test-configuration.

@@ -132,8 +132,53 @@ test('dialog box', async ({page})=>
     //<table
     //<tr row
     await page.getByRole('table').locator('tr', {hasText: '@ann'}).locator('.nb-trash').click();
-await page.getByRole('table').locator('tr', {hasText: '@ann'}).locator('[class="nb-trash"]').click();
+//await page.getByRole('table').locator('tr', {hasText: '@ann'}).locator('[class="nb-trash"]').click();
     //playwright in background would dismiss by default
+})
+
+test('web tables handle', async ({page}) =>
+{
+  await page.getByText('Tables & Data').click();
+  await page.getByText('Smart Table').click();
+//<tr
+  const targetRow = page.getByRole('row', {name: "fat@yandex.ru"});
+  await targetRow.locator('.nb-edit').click();
+
+  //edit the age against selected row
+  await page.locator('input-editor').getByPlaceholder('age').clear();
+  await page.locator('input-editor').getByPlaceholder('age').fill('25');
+  await page.locator('.nb-checkmark').click();
+
+  //get row based on value in columns
+  await page.locator('.ng2-smart-pagination-nav').getByText('2').click();
+  const targetRowById = page.getByRole('row', {name: "12"}).filter({has: page.locator('td').nth(1).getByText("12")});
+  await targetRowById.click();
+
+  //locate any row 
+  //edit and update email 
+  //verify email update is working
+
+  //test filters for the table
+
+  const ages = ["20", "30", "40", "200"]
+
+  for(let age of ages)
+  {
+    await page.locator('input-filter').getByPlaceholder('age').clear();
+    await page.locator('input-filter').getByPlaceholder('age').fill(age);
+    await page.waitForTimeout(1_000); //1000ms is 1 sec
+    const ageRows = page.locator('tbody tr')
+
+    for (let row of await ageRows.all())
+    {
+      const cellValue = await row.locator('td').last().textContent();
+      expect(cellValue).toEqual(age)
+    }
+
+  }
+
+
+
 })
 
 //<ul>
