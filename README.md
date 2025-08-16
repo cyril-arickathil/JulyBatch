@@ -73,3 +73,8 @@ Install the following extensions in Visual Studio Code for a better development 
 
 - If tests fail due to a timeout, increase the `timeout` value in `playwright.config.ts`.
 - For debugging, use the Playwright UI mode (`npm run ui`) to inspect test execution.
+
+
+
+## Author
+Cyril
