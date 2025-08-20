@@ -11,8 +11,8 @@ test.describe('Suite 1', ()=>
 {
   test.beforeEach( async({page})=>
   {
-     await page.getByText('Forms').click();
-    await page.getByText('Form Layouts').click();
+    //  await page.getByText('Forms').click();
+    // await page.getByText('Form Layouts').click();
 
   })
   test('input fields', async ({page})=>
@@ -117,7 +117,7 @@ expect(tooltip).toEqual('This is a tooltip123')
 
 })
 
-test('dialog box', async ({page})=>
+test('dialog box', async ({page, context})=>
 {
    await page.getByText('Tables & Data').click();
     await page.getByText('Smart Table ').click();
@@ -128,6 +128,7 @@ test('dialog box', async ({page})=>
       dialog.accept()
     }
     )
+    context.waitForEvent('page')
 
     //<table
     //<tr row
@@ -164,6 +165,15 @@ test('web tables handle', async ({page}) =>
 
   for(let age of ages)
   {
+    if(age === "200")
+      {
+      await page.locator('input-filter').getByPlaceholder('age').clear();
+      await page.locator('input-filter').getByPlaceholder('age').fill(age);
+      await page.waitForTimeout(1_000); //1000ms is 1 sec
+      const noData = page.getByText('No data found');
+      await expect(noData).toBeVisible();
+      continue;
+      }
     await page.locator('input-filter').getByPlaceholder('age').clear();
     await page.locator('input-filter').getByPlaceholder('age').fill(age);
     await page.waitForTimeout(1_000); //1000ms is 1 sec
@@ -180,15 +190,72 @@ test('web tables handle', async ({page}) =>
 
 
 })
+test('date picker', async ({page}) =>
+{
+ await page.getByText('Forms').click();
+ await page.getByText('Datepicker').click();
 
-//<ul>
+ const calenderInputField = page.getByPlaceholder('Form Picker');
+  await calenderInputField.click();
 
-//<li>item1</li>
-//<li>item2
-//<li>item3
+  let date = new Date(); //by js
+  date.setDate(date.getDate() + 1);
+  const expectedDate = date.getDate().toString();
+  const expectedMonth = date.toLocaleString('En-US', {month: 'short'});
+  const expectedYear = date.getFullYear().toString();
+//Aug 1, 2025
+//25
+  const dateAssert = `${expectedMonth} ${expectedDate}, ${expectedYear}`;
 
-//</ul>
+
+  //August
+  //Aug
+
+  await page.locator('[class="day-cell ng-star-inserted"]').getByText(expectedDate, { exact: true }).click();
+  await expect(calenderInputField).toHaveValue(dateAssert);
+  //Aug 1, 2025
+}
+)
+
+test('sliders componenet ', async ({page}) =>
+{ 
+  const tempGuage = page.locator('[tabtitle="Temperature"] ngx-temperature-dragger circle');
+  await tempGuage.evaluate(node =>
+  {
+    node.setAttribute('cx', '232.63098833543773');
+    node.setAttribute('cy', '232.6309883354377');
+  })
+  await tempGuage.click();
+
+  const tempBox = page.locator('[tabtitle="Temperature"] ngx-temperature-dragger');
+  await tempBox.scrollIntoViewIfNeeded();
+const box = await tempBox.boundingBox();  //300x300 pixel
+//finding midpoint of the box
+const x =  box.width / 2;  //150  0
+const y =  box.height / 2; //150  0
+
+await page.mouse.move(x, y);
+await page.mouse.down();
+
+await page.mouse.move(x - 25, y);
+await page.mouse.move(x - 25, y + 100);
+await page.mouse.up();
 
 
 })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+})
