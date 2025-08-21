@@ -1,27 +1,41 @@
-import {Page} from '@playwright/test';
+import {Locator, Page} from '@playwright/test';
 
 export class NavigationPage 
   {
     readonly page: Page;
+    readonly formLayoutsMenuItem: Locator;
+    readonly datePickerMenuItem: Locator;
+    readonly toolTipMenuItem: Locator;
+    readonly smartTableMenuItem: Locator;
 
     constructor(page: Page) 
     {
       this.page = page;
+      this.formLayoutsMenuItem = page.getByText('Form Layouts');
+      this.datePickerMenuItem = page.getByText('Datepicker');
+      this.toolTipMenuItem = page.getByText('Tooltip');
+      this.smartTableMenuItem = page.getByText('Smart Table');
+
     }
     async formLayoutsPage()
     {
-      await this.page.getByText('Forms').click();
-      await this.page.getByText('Form Layouts').click();
+      await this.selectMenu('Forms');
+      await this.formLayoutsMenuItem.click();
     }
     async DatePickerPage()
     {
-      this.selectMenu('Forms');
-      await this.page.getByText('Datepicker').click();
+      await this.selectMenu('Forms');
+      await this.datePickerMenuItem.click();
     }
     async ToolTipPage()
     {
-      await this.page.getByText('Modal & Overlays').click();
-      await this.page.getByText('Tooltip').click();
+      await this.selectMenu('Modal & Overlays');
+      await this.toolTipMenuItem.click();
+    }
+    async smartTablePage()
+    {
+      await this.selectMenu('Tables & Data');
+      await this.smartTableMenuItem.click();
     }
 //accessibility
     private async selectMenu(menuItem: string) //Forms
