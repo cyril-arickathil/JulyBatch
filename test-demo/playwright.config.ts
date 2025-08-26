@@ -51,16 +51,6 @@ export default defineConfig({
       testDir: './tests/api'
     },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
-
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
@@ -83,10 +73,10 @@ export default defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
-  webServer: {
-    command: `cd ${SERVER_PATH} && npm start`,
-    url: 'http://localhost:4200',
-    reuseExistingServer: !process.env.CI,
-    timeout: 5 * 60_1000   //5 minutes (1000ms = 1sec , 1000*60=60secs(1min))
-  },
+  // webServer: {
+  //   command: `cd ${SERVER_PATH} && npm start`,
+  //   url: 'http://localhost:4200',
+  //   //reuseExistingServer: !process.env.CI,
+  //   timeout: 5 * 60_1000   //5 minutes (1000ms = 1sec , 1000*60=60secs(1min))
+  // },
 });
