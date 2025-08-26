@@ -1,8 +1,8 @@
 import {Locator, Page} from '@playwright/test';
+import { BasePage } from './base.page';
 
-export class NavigationPage 
+export class NavigationPage extends BasePage
   {
-    readonly page: Page;
     readonly formLayoutsMenuItem: Locator;
     readonly datePickerMenuItem: Locator;
     readonly toolTipMenuItem: Locator;
@@ -10,7 +10,7 @@ export class NavigationPage
 
     constructor(page: Page) 
     {
-      this.page = page;
+      super(page);
       this.formLayoutsMenuItem = page.getByText('Form Layouts');
       this.datePickerMenuItem = page.getByText('Datepicker');
       this.toolTipMenuItem = page.getByText('Tooltip');

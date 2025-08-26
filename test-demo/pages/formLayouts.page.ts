@@ -1,12 +1,11 @@
 import {Page} from '@playwright/test';
+import { BasePage } from './base.page';
 
-export class FormLayoutsPage
+export class FormLayoutsPage extends BasePage
 {
-  private readonly page: Page;
-
   constructor(page: Page) 
   {
-    this.page = page;
+    super(page);
   }
   /**
    * 
@@ -22,6 +21,7 @@ export class FormLayoutsPage
           await usingTheGridForm.getByRole('textbox', {name: "Email"}).fill(email);
          await usingTheGridForm.getByRole('textbox', {name: "Password"}).fill(password);
           await usingTheGridForm.getByRole('radio', {name: optionText}).check({force: true});
+          await this.waitForNumberOfSeconds(2);
           await usingTheGridForm.getByRole('button', {name: "Sign in"}).click();
           //.getByRole('textbox', {name: "Email"});
 
