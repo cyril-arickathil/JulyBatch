@@ -47,8 +47,13 @@ export default defineConfig({
     },
      {
       name: 'API tests',
-      use: { ...devices['Desktop Chrome'] },
-      testDir: './tests/api'
+      use: { ...devices['Desktop Chrome'], baseURL: 'https://thinking-tester-contact-list.herokuapp.com',
+        extraHTTPHeaders: 
+        {
+          'Authorization': `Bearer ${process.env.API_TOKEN}`
+        }
+       },
+      testDir: './tests/api',
     },
 
     /* Test against mobile viewports. */

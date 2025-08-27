@@ -1,21 +1,63 @@
 import { test, expect } from "@playwright/test";
 
+const email = 'testcyril@fake.com';
+const password = 'myPassword';
 
-test('add users', async ({request})=>
+test('POST /users add users', async ({ request })=>
 {
-  const response = await request.post('https://reqres.in/api/users', {
-    data: {
-      name: 'morpheus',
-      job: 'leader'
+  // xlsx jar
+  const firstName = "Dinesh";
+  const lastName = "john";
+  const email = `test${firstName}_${lastName}@fake.com`;
+  const password = "myPassword";
+  const response = await request.post('/users',
+    {
+      data:
+     {
+    "firstName": firstName,
+    "lastName": lastName,
+    "email": email,
+    "password": password
+}
     }
-  });
-
-  expect(response.ok()).toBeTruthy();
-  expect(response.status()).toBe(201);
-
-  const responseBody = JSON.parse(await response.text());
+  )
+const responseBody = await response.json();
   console.log(responseBody);
-  expect(responseBody.name).toBe('morpheus');
-  expect(responseBody.job).toBe('leader');
+  expect.soft(responseBody).toHaveProperty('user');
+  expect.soft(responseBody).toHaveProperty('token');
+
+  expect.soft(responseBody.user.firstName).toBe(firstName);
+  expect.soft(responseBody.user.lastName).toBe('lastName');
+  expect.soft(responseBody.user.email).toBe(email);
+  
 })
+
+test('POST /users/login user', async ({ request })=>
+{
+  const response = await request.post('/users/login',
+    {
+      data:
+     {
+   "email":email,
+    "password": password
+}
+    }
+  )
+
+const responseBody = await response.json();
+  console.log(responseBody.token);
+
+const responseMe = await request.get('/users/me', 
+  {
+    headers:
+    {
+      'Authorization': `Bearer ${responseBody.token}`
+    }
+  }
+)
+
+console.log(await responseMe.json());
+}
+
+)
 
