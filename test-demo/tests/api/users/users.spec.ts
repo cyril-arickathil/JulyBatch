@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { faker } from '@faker-js/faker';
 
 const email = 'testcyril@fake.com';
 const password = 'myPassword';
@@ -32,29 +33,9 @@ const responseBody = await response.json();
   
 })
 
-test('POST /users/login user', async ({ request })=>
+test('POST /users/me getProfile', async ({ request })=>
 {
-  const response = await request.post('/users/login',
-    {
-      data:
-     {
-   "email":email,
-    "password": password
-}
-    }
-  )
-
-const responseBody = await response.json();
-  console.log(responseBody.token);
-
-const responseMe = await request.get('/users/me', 
-  {
-    headers:
-    {
-      'Authorization': `Bearer ${responseBody.token}`
-    }
-  }
-)
+const responseMe = await request.get('/users/me', )
 
 console.log(await responseMe.json());
 }

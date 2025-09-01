@@ -9,6 +9,7 @@ test.beforeEach(async ({page}) =>
 
 test.describe('Suite 1', ()=>
 {
+  test.describe.configure({retries: 2, mode: "serial"}); //override the retries for this suite
   test.beforeEach( async({page})=>
   {
     //  await page.getByText('Forms').click();
