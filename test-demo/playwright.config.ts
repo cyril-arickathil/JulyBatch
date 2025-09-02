@@ -7,7 +7,7 @@ import path from 'path';
  */
 import dotenv from 'dotenv';
 
-dotenv.config({ path: path.resolve(__dirname, '.env') });
+dotenv.config({ path: path.resolve(__dirname, '.env') });  //
 console.log(`The API Token is ${process.env.API_TOKEN}`);
 
 const SERVER_PATH = path.resolve(__dirname, '../pw-practice-app');
@@ -20,7 +20,7 @@ export default defineConfig({
   timeout: 30_000, //10000 or 1000*10
   testDir: './tests',
   /* Run tests in files in parallel */
-  fullyParallel: false,
+  fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI 2 times when running locally retry 1 time */
@@ -28,7 +28,10 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. and locally utilise 4 workers */
   workers: process.env.CI ? 1 : 4,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [
+    ['html'],
+    ["allure-playwright"]
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -40,6 +43,13 @@ export default defineConfig({
     video: {
       mode : 'on',
       size: { width: 640, height: 480 }
+    },
+    proxy:
+    {
+      //server: 'http://username:password@ipaddress:port'
+      username: '',
+      password: '',
+      server: ''
     }
 
   },

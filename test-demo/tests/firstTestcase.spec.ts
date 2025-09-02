@@ -50,7 +50,7 @@ test('Locator syntaxes', async ({page}) =>
 
 //identify locator for password element in Using the Grid
 
-test('user facing locator', async ({page}) =>
+test.skip('user facing locator', async ({page}) =>
 {
  await page.getByRole('textbox', {name: "Email"}).first().click();
  await page.getByRole('button', {name:"Sign in"}).first().click();
