@@ -44,13 +44,13 @@ export default defineConfig({
       mode : 'on',
       size: { width: 640, height: 480 }
     },
-    proxy:
-    {
-      //server: 'http://username:password@ipaddress:port'
-      username: '',
-      password: '',
-      server: ''
-    }
+    // proxy:
+    // {
+    //   //server: 'http://username:password@ipaddress:port'
+    //   username: '',
+    //   password: '',
+    //   server: ''
+    // }
 
   },
 
@@ -85,6 +85,7 @@ export default defineConfig({
       name: 'QA',
 
       use: { ...devices['Desktop Chrome'], baseURL: 'https://qa.thinking-tester-contact-list.herokuapp.com',
+        storageState: '.auth/authuser.json',
         extraHTTPHeaders: 
         {
           'Authorization': `Bearer ${process.env.API_TOKEN}`
