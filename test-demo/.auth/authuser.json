@@ -2,35 +2,35 @@
   "cookies": [
     {
       "name": "_ga",
-      "value": "GA1.1.1521613416.1756780223",
+      "value": "GA1.1.582245009.1757066001",
       "domain": ".practicesoftwaretesting.com",
       "path": "/",
-      "expires": 1791340222.659282,
+      "expires": 1791626000.564314,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_ga_0BJFXRKTYC",
+      "value": "GS2.1.s1757066000$o1$g1$t1757066001$j59$l0$h0",
+      "domain": ".practicesoftwaretesting.com",
+      "path": "/",
+      "expires": 1791626001.17033,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
     },
     {
       "name": "cf_clearance",
-      "value": "1p55MHESrUBM_JqvUvmgsRDZMF1QjjSxTz0eBC2Tq5M-1756780224-1.2.1.1-0GkUfyzE682ihjB2UopRuCEBYVD2O02eal.9EHoRM3KHr0y4fDLudcJhXtn7.DcWuKE7eGxs37qQ3u9zzy84dC.YWorXvAw9PYbanEBsj8MFp0wgwSKQiQH2o99GA3yQhgrszF34qSENr293E1TXZuv__r.5_HZrgCkIWd2_g30hKznj6jHsnpyNqv5Lt0m2ww9gpdNomT.X6o8oWU7HzT45qSGa1qwzLKo5AM43Wp0",
+      "value": "aa.J.XdXcp7E_t8Pt5Bs0_vPsXHYtbJF4o3ZD6BdSvY-1757066001-1.2.1.1-W1IqhWkZvou5WqsEmdn98IMttzcT7UpiWHYbNHrY.z95II4n6QDgZoLPEZaG41gY1luR48prwvvSD4JT_x.SX9tGC1bmSZX63cLojzdMfCRUaA2uAIo6dZaP_QvZicg681ycFcPXhG6Cr4km6hZAla.oaoeL2BCk31zPMIHYKpSughuLML_cWe6rV1oxDimWHjPp9BivTWPBnEDPykuap_ygsSQTJYx3r9oxlcTqPO0",
       "domain": ".practicesoftwaretesting.com",
       "path": "/",
-      "expires": 1788316222.975121,
+      "expires": 1788602001.244296,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None",
       "partitionKey": "https://practicesoftwaretesting.com",
       "_crHasCrossSiteAncestor": false
-    },
-    {
-      "name": "_ga_0BJFXRKTYC",
-      "value": "GS2.1.s1756780222$o1$g1$t1756780224$j58$l0$h0",
-      "domain": ".practicesoftwaretesting.com",
-      "path": "/",
-      "expires": 1791340224.558981,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
     }
   ],
   "origins": []

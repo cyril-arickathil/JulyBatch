@@ -5,6 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     
+    
 
     {
       "type": "node",
@@ -19,6 +20,14 @@
       "outFiles": [
         "${workspaceFolder}/**/*.js"
       ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Run QA with @TC01",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["cross-env", "ENV=qa", "playwright", "test", "--grep", "@TC01", "--headed", "--project=chromium"],
+      "console": "integratedTerminal"
     }
   ]
 }

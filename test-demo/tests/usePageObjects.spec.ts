@@ -29,7 +29,6 @@ test('form submit', async ({page})=>
  navigateTo.smartTableMenuItem.click();
  const onFormLayoutsPage = new FormLayoutsPage(page);
  const onDatePickerPage = new DatePickerPage(page);
- await page.video()
 
  await navigateTo.formLayoutsPage();
  await onFormLayoutsPage.submitUsingTheGridForm(randomEmail, randomPassword, 'Option 2');

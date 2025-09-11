@@ -1,0 +1,2 @@
+C:\Users\admin\Projects\JulyBatch\test-demo\tests\uiComponents.spec.ts-snapshots\Suite-1-radio-component-1-chromium-win32.png is re-generated, writing actual.
+C:\Users\admin\Projects\JulyBatch\test-demo\tests\uiComponents.spec.ts-snapshots\Suite-1-radio-component-1-chromium-win32.png is re-generated, writing actual.

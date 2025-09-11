@@ -1,5 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 import path from 'path';
+// import globalSetup from './global.setup';
 
 /**
  * Read environment variables from file.
@@ -7,14 +8,18 @@ import path from 'path';
  */
 import dotenv from 'dotenv';
 
-dotenv.config({ path: path.resolve(__dirname, '.env') });  //
-console.log(`The API Token is ${process.env.API_TOKEN}`);
+// dotenv.config({ path: path.resolve(__dirname, '.env') });  //
+// console.log(`The API Token is ${process.env.API_TOKEN}`);
+
+// dotenv.config({ path: path.resolve(__dirname, `env/.env.${process.env.ENV}`) });  //
+// console.log(`${process.env.URL}`);
 
 const SERVER_PATH = path.resolve(__dirname, '../pw-practice-app');
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  globalSetup: './global.setup',
   globalTimeout: process.env.CI ? 1*60*60_000 : undefined, //(set for 1 hour)
   //by default 30secs is the timeout
   timeout: 30_000, //10000 or 1000*10

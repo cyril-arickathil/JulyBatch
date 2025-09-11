@@ -9,7 +9,7 @@ test.beforeEach(async ({page}) =>
 
 test.describe('Suite 1', ()=>
 {
-  test.describe.configure({retries: 2, mode: "serial"}); //override the retries for this suite
+  test.describe.configure({mode: "serial"}); //override the retries for this suite
   test.beforeEach( async({page})=>
   {
     //  await page.getByText('Forms').click();
@@ -18,6 +18,7 @@ test.describe('Suite 1', ()=>
   })
   test('input fields', async ({page})=>
   {
+
       const emailInput = page.locator('nb-card', {hasText: "Using the Grid"}).getByRole('textbox', {name: "Email"});
       await emailInput.fill('user@test.com');
       // user@test.com
@@ -28,12 +29,17 @@ test.describe('Suite 1', ()=>
   })
   test('radio component', async ({page})=>
   {
-    //type=radio
-    const radioButton = page.locator('nb-card', {hasText: "Using the Grid"}).getByRole('radio', {name: "Option 1"});
-    radioButton.click({force:true});
-// <label>
-        const radioButtonByLabel = page.locator('nb-card', {hasText: "Using the Grid"}).getByLabel('Option 2')
-radioButtonByLabel.click();
+    await page.getByText('Forms').click();
+    await page.getByText('Form Layouts').click();
+
+    const usingTheGrid = page.locator('nb-card', {hasText: "Using the Grid"});
+    await usingTheGrid.getByRole('radio', {name: "Option 2"}).check({force: true});
+   // const radioStatus = await usingTheGrid.getByRole('radio', {name: "Option 1"}).isChecked();
+    await expect(usingTheGrid).toHaveScreenshot();
+
+
+//         const radioButtonByLabel = page.locator('nb-card', {hasText: "Using the Grid"}).getByLabel('Option 2')
+// radioButtonByLabel.click();
 
 // const radioStatus = await radioButton.isChecked();
 // //true  --
@@ -41,7 +47,7 @@ radioButtonByLabel.click();
 // //false is not to true
 // expect(radioStatus).toBeFalsy();
 
-await expect(radioButton).toBeChecked();  //best way
+// await expect(radioButton).toBeChecked();  //best way
 
 
   })
