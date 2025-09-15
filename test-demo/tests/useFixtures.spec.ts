@@ -5,8 +5,8 @@ test('env check @TC01', async({ page })=>
   console.log(`${process.env.ENV}`);
   console.log(`${process.env.URL}`);
 })
-
-test('test using fixtures', async({ page, navigateTo, onFormLayoutsPage, onDatePickerPage })=>
+//type regression
+test('test using fixtures', {tag: ['@regression' , '@smoke'] }, async({ page, navigateTo, onFormLayoutsPage, onDatePickerPage })=>
 {
   await navigateTo.smartTableMenuItem.click();
 
@@ -21,13 +21,13 @@ await onDatePickerPage.selectCommonDatePickerDateFromToday(3);
 })
 
 
-test('test using fixtures - date picker', async({ navigateTo, onDatePickerPage })=>
+test('test using fixtures - date picker', {tag: '@sanity'}, async({ navigateTo, onDatePickerPage })=>
 {
   await navigateTo.DatePickerPage();
 await onDatePickerPage.selectCommonDatePickerDateFromToday(3);
 })
 
-test('test using fixtures - navigation', async({ page,navigateTo })=>
+test('@sanity test using fixtures - navigation', async({ page,navigateTo })=>
 {
   await test.step('Navigate to form layout page', async () => {
     await page.goto('http://localhost:4200/pages/iot-dashboard');

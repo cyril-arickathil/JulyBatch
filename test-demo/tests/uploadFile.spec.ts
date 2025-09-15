@@ -22,7 +22,7 @@ test('download file', async ({page})=>
       downloadLink.click(), //triggers the download
     ]
   )
-  await download.saveAs('tests/downloadFiles/DummyFile1.txt');
+  await download.saveAs('tests/downloadFiles/'+download.suggestedFilename());
 })
 
 // page.on events

@@ -19,7 +19,8 @@ const SERVER_PATH = path.resolve(__dirname, '../pw-practice-app');
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  globalSetup: './global.setup',
+  globalSetup: require.resolve('./global.setup.ts'),
+  globalTeardown: require.resolve('./global.teardown.ts'),
   globalTimeout: process.env.CI ? 1*60*60_000 : undefined, //(set for 1 hour)
   //by default 30secs is the timeout
   timeout: 30_000, //10000 or 1000*10

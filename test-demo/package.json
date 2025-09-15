@@ -9,6 +9,7 @@
     "usingPage": "npx playwright test  --grep @regression",
     "run api": "npx playwright test --project=API",
     "run staging": "npx playwright test --project=staging",
+    "prod": "cross-env ENV=prod npx playwright test runInProd.spec.ts --headed --project=chromium --grep @smoke",
     "qa": "cross-env ENV=qa npx playwright test --headed --project=chromium useFixtures.spec.ts:3",
     "local": "npx playwright test ENV=local --headed --project=chromium",
     "pageObjects": "npx playwright test usePageObjects.spec.ts --headed && npx playwright show-test-report",
