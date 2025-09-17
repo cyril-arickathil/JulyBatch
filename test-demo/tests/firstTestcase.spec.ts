@@ -6,7 +6,7 @@ test.beforeEach(async ({page}) =>
   //Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:4200/pages/iot-dashboard Call log:  - navigating to "http://localhost:4200/pages/iot-dashboard", waiting until "load"
   await page.goto("http://localhost:4200/pages/iot-dashboard");
   await page.getByText('Forms').click();
-  await page.getByText('Form Layouts').click();
+  await page.getByText('Form Layouts').click({force: true});
 })
 
 test('Locator syntaxes', async ({page}) =>
@@ -71,7 +71,7 @@ test('locating child elements', async ({page})=>
   await page.locator('nb-card').getByRole('button', {name: "Sign in"}).click();
 })
 
-test('locating parent elements', async ({page}) =>
+test('locating parent elements',{tag: '@smoke'}, async ({page}) =>
 {
   await page.locator('nb-card', {hasText: "Using the Grid"}).getByRole('textbox', {name: "Email"}).click();
   await page.locator('nb-card', {has: page.locator('#inputEmail1')}).getByRole('textbox', {name:"Email"}).click();

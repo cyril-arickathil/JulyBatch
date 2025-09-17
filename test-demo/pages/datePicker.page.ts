@@ -13,6 +13,7 @@ export class DatePickerPage extends BasePage
   {
     const calenderInputField = this.page.getByPlaceholder('Form Picker');
       await calenderInputField.click();
+      await this.waitForNumberOfSeconds(3);
     
       let date = new Date(); //by js
       date.setDate(date.getDate() + numberOfDaysFromToday);

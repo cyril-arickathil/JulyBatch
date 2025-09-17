@@ -23,7 +23,8 @@ export const test = base.extend<MyFixtures>({
   onFormLayoutsPage: async ({page}, use) =>
   {
     await use(new FormLayoutsPage(page))
-  },  onDatePickerPage: async ({page}, use) =>
+  },  
+  onDatePickerPage: async ({page}, use) =>
   {
     await use(new DatePickerPage(page))
   }
